@@ -16,22 +16,54 @@
 </head>
 
 <body>
-<<<<<<< HEAD
     <div class="container">
         <div class="row">
-            <div class="col-12">
-<h1></h1>
+            <div class="jumbotron col-12" id="filters">
+                <h5 class="text-center">Filters</h5>
+                <hr class="my-4">
+                <!-- Ratings DIV with buttons to select from 1 to 5 stars ratings-->
+                <div id="ratingContainer">
+                    <!-- Ratings buttons with class "star"-->
+                    <h5>Rating 
+                        <button class="btn star active" value="1" id="starOne" data-state="inactive"
+                            onclick="console.log('oneStar')"> &#9733;
+                            <!-- hover filled star unicode &#9733; -->
+                        </button>
+                        <button class="btn star" id="starTwo" value="2" data-state="inactive"
+                            onclick="console.log('twoStars')">&#9733;&#9733;</button>
+                        <button class="btn star" id="starThree" value="3" data-state="inactive"
+                            onclick="console.log('threeStars')"> &#9733;&#9733;&#9733;</button>
+                        <button class="btn star" id="starFour" value="4" data-state="inactive"
+                            onclick="console.log('fourStars')"> &#9733;&#9733;&#9733;&#9733;</button>
+                        <button class="btn star" id="starFive" value="5" data-state="inactive"
+                            onclick="console.log('fiveStars')"> &#9733;&#9733;&#9733;&#9733;&#9733;</button>
+                    </h5>
+                </div>
+                <!-- Hours buttons with class "time" and empty id-->
+                <h5>Hours 
+                    <button class="btn time active" value="1" id="" data-state="inactive"
+                        onclick="console.log('AM')"> AM
+                    </button>
+                    <button class="btn time" id="" value="2" data-state="inactive"
+                        onclick="console.log('PM')">PM</button>
+                    <button class="btn time" id="" value="3" data-state="inactive" onclick="console.log('open now')">
+                        Now Open </button>
+                </h5>
+                <!-- Price Range buttons with class "price" and empty id-->
+                <h5>Price Range
+                    <button class="btn price active" value="1" id="" data-state="inactive"
+                    onclick="console.log('under $10')"> Under $10
+                </button>
+                <button class="btn price" id="" value="2" data-state="inactive"
+                    onclick="console.log('$10 - $20')">$10 - $20</button>
+                <button class="btn price" id="" value="3" data-state="inactive" onclick="console.log('open now')">
+                    Over $20 </button></h5>
+                    <!-- Location will be inputed by search -->
+                <h5>Location</h5>
             </div>
         </div>
 
     </div>
-=======
-
-<h1>TEST PUSH</h1>
-  
-<p>test pull request</p>
-
->>>>>>> 923f519ec9144a9b81e3e5c668f161b0fdc6fc86
 
 
     <!-- JQuery -->
