@@ -1,11 +1,6 @@
 const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId  = "pl4NIPBVHT19";
 
-const weatherAccessId = "IhoPBape6zamvrXhAop7j";
-const weatherSecretKey = "XfKCLeB7QSZnVmsSSrlqL5abBWmH1kLv4GiHMpWB"
-const weatherApiKey = "1918920b03msha6fce5bb1344417p16cfcbjsnd91e277e0013";
-const weatherApiBaseUrl = "https://api.aerisapi.com/observations/";
-
 const aerisWeather = {
     apiKey: "XfKCLeB7QSZnVmsSSrlqL5abBWmH1kLv4GiHMpWB",
     accessId: "IhoPBape6zamvrXhAop7j",
@@ -28,6 +23,8 @@ function logOutToConsole(obj){
     console.log(obj);
 }
 
+
+
 $(document).ready(function(){
 
     //instantiate places and attach it to an input text box in the html
@@ -37,6 +34,9 @@ $(document).ready(function(){
         container: document.querySelector('#location')
       });
     
+      placesAutocomplete.on('change', function(e) {
+        console.log(e.suggestion);
+      });
 
       //When user selects a suggested address, save off the latitude and longitude
       placesAutocomplete.on('change', e => {latLng = e.suggestion.latlng;});
