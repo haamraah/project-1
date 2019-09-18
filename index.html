@@ -17,53 +17,30 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="jumbotron col-12" id="filters">
-                <h5 class="text-center">Filters</h5>
-                <hr class="my-4">
-                <!-- Ratings DIV with buttons to select from 1 to 5 stars ratings-->
-                <div id="ratingContainer">
-                    <!-- Ratings buttons with class "star"-->
-                    <h5>Rating 
-                        <button class="btn star active" value="1" id="starOne" data-state="inactive"
-                            onclick="console.log('oneStar')"> &#9733;
-                            <!-- hover filled star unicode &#9733; -->
-                        </button>
-                        <button class="btn star" id="starTwo" value="2" data-state="inactive"
-                            onclick="console.log('twoStars')">&#9733;&#9733;</button>
-                        <button class="btn star" id="starThree" value="3" data-state="inactive"
-                            onclick="console.log('threeStars')"> &#9733;&#9733;&#9733;</button>
-                        <button class="btn star" id="starFour" value="4" data-state="inactive"
-                            onclick="console.log('fourStars')"> &#9733;&#9733;&#9733;&#9733;</button>
-                        <button class="btn star" id="starFive" value="5" data-state="inactive"
-                            onclick="console.log('fiveStars')"> &#9733;&#9733;&#9733;&#9733;&#9733;</button>
-                    </h5>
-                </div>
-                <!-- Hours buttons with class "time" and empty id-->
-                <h5>Hours 
-                    <button class="btn time active" value="1" id="" data-state="inactive"
-                        onclick="console.log('AM')"> AM
-                    </button>
-                    <button class="btn time" id="" value="2" data-state="inactive"
-                        onclick="console.log('PM')">PM</button>
-                    <button class="btn time" id="" value="3" data-state="inactive" onclick="console.log('open now')">
-                        Now Open </button>
-                </h5>
-                <!-- Price Range buttons with class "price" and empty id-->
-                <h5>Price Range
-                    <button class="btn price active" value="1" id="" data-state="inactive"
-                    onclick="console.log('under $10')"> Under $10
-                </button>
-                <button class="btn price" id="" value="2" data-state="inactive"
-                    onclick="console.log('$10 - $20')">$10 - $20</button>
-                <button class="btn price" id="" value="3" data-state="inactive" onclick="console.log('open now')">
-                    Over $20 </button></h5>
-                    <!-- Location will be inputed by search -->
-                <h5>Location</h5>
-            </div>
-        </div>
+    
 
-    </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a href="#" class="navbar-left"><img src="../project-1/assets/css/images/trava-vada.png"></a>
+            
+                    <h1>Search, pick and enjoy...</h1>
+            
+                </nav>
+            
+                <form class="form-inline my-2 my-lg-0 ">
+            
+                    <input class="form-control mr-sm-2" id="location" type="search" placeholder="Location" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0 " type="submit">Select</button>
+            
+                    <select class="browser-default custom-select custom-select-lg mb-3">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Restaurant</option>
+                        <option value="2">Library</option>
+                        <option value="3">Fitness</option>
+                    </select>
+                </form>
+
+
+
 
 
     <!-- JQuery -->
@@ -76,6 +53,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- Algolia Places Library -->
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
     <!-- Site Javascript -->
     <script src="assets/javascript/app.js"></script>
 </body>
