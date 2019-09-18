@@ -16,27 +16,37 @@
 </head>
 
 <body>
+    <div class="row"><div class="col">
+        <div class="row"><nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a href="#" class="navbar-left">
+                    <img src="../project-1/assets/css/images/trava-vada.png">
+                </a>
+                <h1>Search, pick and enjoy...</h1>
+            </nav>
+        </div>
+        
+        <div class="row">
+                <form class="form my-2 my-lg-0 ">
+    
+                        <input class="form-control mr-sm-2" id="location" type="search" placeholder="Location" aria-label="Search">
+                        <button class="btn btn-success my-2 my-sm-0 " id="submitLocation" type="submit">Select</button>
+                           <select class="browser-default custom-select custom-select-lg mb-3">
+                            <option selected>Open this select menu</option>
+                            <option value="1">Restaurant</option>
+                            <option value="2">Library</option>
+                            <option value="3">Fitness</option>
+                        </select>
+                    </form>
+                
+        </div>
+    
+    </div></div>
+    <div class="row"><div class="col">
+        <div id="map" style=" height:300px;"></div>
 
+    </div></div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="#" class="navbar-left"><img src="../project-1/assets/css/images/trava-vada.png"></a>
-
-        <h1>Search, pick and enjoy...</h1>
-
-    </nav>
-
-    <form class="form-inline my-2 my-lg-0 ">
-
-        <input class="form-control mr-sm-2" id="location" type="search" placeholder="Location" aria-label="Search">
-        <button class="btn btn-success my-2 my-sm-0 " type="submit">Select</button>
-
-        <select class="browser-default custom-select custom-select-lg mb-3">
-            <option selected>Open this select menu</option>
-            <option value="1">Restaurant</option>
-            <option value="2">Library</option>
-            <option value="3">Fitness</option>
-        </select>
-    </form>
+  
 
 
 
@@ -63,6 +73,9 @@
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
     <!-- Site Javascript -->
     <script src="assets/javascript/app.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8&callback=initMap">
+  </script>
 </body>
 
 </html>
