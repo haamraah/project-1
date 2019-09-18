@@ -1,23 +1,23 @@
 
-const toogleActive = function(button){
+const toogleActive = function (button) {
     var state = button.attr("data-state");
-    if(state == "inactive"){
+    if (state == "inactive") {
         button.attr("data-state", "active");
         button.addClass("active");
     }
-    else if (state == "active"){
+    else if (state == "active") {
         button.attr("data-state", "inactive");
         button.removeClass("active");
     }
 };
-$(".star").on("click", function(event) {
-    toogleActive($(this));  
+$(".star").on("click", function (event) {
+    toogleActive($(this));
 })
-$(".time").on("click", function(event) {
-    toogleActive($(this));  
+$(".time").on("click", function (event) {
+    toogleActive($(this));
 })
-$(".price").on("click", function(event) {
-    toogleActive($(this));  
+$(".price").on("click", function (event) {
+    toogleActive($(this));
 })
 
 
@@ -40,32 +40,54 @@ const aerisWeather = {
         }).then(function (response) {
             callback(response);
         });
+        
     }
 };
 
 let latLng = {
-    lat:33.4487,
-    lng:-112.071
+    lat: 33.4487,
+    lng: -112.071
 };  //latitude and longitude in an object returned from the suggestion from Algolia places
+
+const aerisResults = {
+    temp: "",
+    humidity: "",
+    place: "",
+    icon: ""
+}
+function setWeatherData(weatherObject) {
+    aerisResults.temp = weatherObject.response.ob.tempF
+    console.log(aerisResults.temp);
+    console.log(weatherObject);
+}
+
+
+
+
 
 function logOutToConsole(obj) {
     console.log(obj);
 }
 
-$(document).on("click","#submitLocation",function(event){
-  event.preventDefault()
 
- map.setCenter(latLng)
+$(document).on("click", "#submitLocation", function (event) {
+    event.preventDefault()
+    
+    map.setCenter(latLng)
+    let stringVal = latLng.lat + "," + latLng.lng;
+    console.log(stringVal);
+    aerisWeather.getCurrentWeather(stringVal, setWeatherData);
+
 });
 
 // })
 function initMap() {
 
-     map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: {
-          lat: 33.4486,
-          lng: -112.077
+            lat: 33.4486,
+            lng: -112.077
         },
         mapTypeId: "satellite"
     });
@@ -83,9 +105,9 @@ $(document).ready(function () {
 
 
     //When user selects a suggested address, save off the latitude and longitude
-    placesAutocomplete.on('change', e => {latLng = e.suggestion.latlng;});
+    placesAutocomplete.on('change', e => { latLng = e.suggestion.latlng; });
 
-    
+
 
     aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
 });
