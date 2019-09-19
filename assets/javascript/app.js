@@ -56,9 +56,17 @@ const aerisResults = {
     icon: ""
 }
 function setWeatherData(weatherObject) {
-    aerisResults.temp = weatherObject.response.ob.tempF
-    console.log(aerisResults.temp);
+    aerisResults.temp = weatherObject.response.ob.tempF;
+    aerisResults.humidity = weatherObject.response.ob.humidity;
+    aerisResults.place = weatherObject.response.place.name;
+    aerisResults.icon = weatherObject.response.ob.icon;
+  
     console.log(weatherObject);
+    console.log(aerisResults.temp);
+    console.log(aerisResults.humidity);
+    console.log(aerisResults.place);
+    console.log(aerisResults.icon);
+    
 }
 
 
