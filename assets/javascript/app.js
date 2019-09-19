@@ -2,6 +2,14 @@ const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
 let locationCenter;
 var map;
+var placesAutocomplete;
+
+let latLng = {
+    lat:33.4487,
+    lng:-112.071
+};  //latitude and longitude in an object returned from the suggestion from Algolia places
+
+
 const aerisWeather = {
     apiKey: "XfKCLeB7QSZnVmsSSrlqL5abBWmH1kLv4GiHMpWB",
     accessId: "IhoPBape6zamvrXhAop7j",
@@ -18,10 +26,6 @@ const aerisWeather = {
     }
 };
 
-let latLng = {
-    lat:33.4487,
-    lng:-112.071
-};  //latitude and longitude in an object returned from the suggestion from Algolia places
 
 function logOutToConsole(obj) {
     console.log(obj);
@@ -42,7 +46,7 @@ function initMap() {
           lat: 33.4486,
           lng: -112.077
         },
-        mapTypeId: "satellite"
+        mapTypeId: "roadmap"
     });
 }
 
@@ -50,7 +54,7 @@ function initMap() {
 $(document).ready(function () {
 
     //instantiate places and attach it to an input text box in the html
-    var placesAutocomplete = places({
+        placesAutocomplete = places({
         appId: algoliaAppId,
         apiKey: algoliaApiKey,
         container: document.querySelector('#location')
