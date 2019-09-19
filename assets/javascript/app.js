@@ -27,11 +27,11 @@ function logOutToConsole(obj) {
     console.log(obj);
 }
 
-$(document).on("click","#submitLocation",function(event){
-  event.preventDefault()
+// $(document).on("click","#submitLocation",function(event){
+//   event.preventDefault()
 
- map.setCenter(latLng)
-});
+//  map.setCenter(latLng)
+// });
 
 // })
 function initMap() {
@@ -64,4 +64,12 @@ $(document).ready(function () {
 
     aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
 });
+
+$(document).on("click","#get",function(){
+    let rating = $("#ratingElement").val();
+    let pricing=$("#priceElement").val();
+    let location = $("#location").val();
+    let category = $("#category").val();
+    console.log(rating,pricing,location,category,latLng)
+ })
 
