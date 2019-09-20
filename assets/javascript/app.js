@@ -38,8 +38,9 @@ const aerisResults = {
     icon: "",
     weatherConditions: "",
     heatIndex: "",
-    dateTime: ""
-
+    dateTime: "",
+    sunrise: "",
+    sunset: ""
 }
 
 
@@ -134,9 +135,12 @@ function setWeatherData(weatherObject) {
     aerisResults.humidity = weatherObject.response.ob.humidity;
     aerisResults.place = weatherObject.response.place.name;
     aerisResults.icon = weatherObject.response.ob.icon;
-    aerisResults.dateTime = weatherObject.response.ob.dateTimeISO;
+    aerisResults.dateTime = moment(weatherObject.response.ob.dateTimeISO).format('h:mm:ss a');
     aerisResults.heatIndex = weatherObject.response.ob.heatindexF;
     aerisResults.weatherConditions = weatherObject.response.ob.weather;
+    aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm:ss a');
+    aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm:ss a');
+
   
     console.log(weatherObject);
     console.log(aerisResults.temp);
@@ -153,6 +157,8 @@ function setWeatherData(weatherObject) {
     $("#heat-index").text(aerisResults.heatIndex);
     $("#weather-conditions").text(aerisResults.weatherConditions);
     $("#date-time").text(aerisResults.dateTime);
+    $("#sunrise").text(aerisResults.sunrise);
+    $("#sunset").text(aerisResults.sunset);
 }
 
 
