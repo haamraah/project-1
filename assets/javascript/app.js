@@ -2,6 +2,7 @@ const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
 const googleMapsApiKey = "AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8";
 let locationCenter;
+let locationsArr = new Array;
 var map;
 var service;
 var request;
@@ -88,6 +89,22 @@ function callback(results, status) {
     console.log("Ran callback function");
     console.log(google.maps.places.PlacesServiceStatus);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+        locationsArr = results.map(function(location){
+            let newObj = {
+                name: location.name,
+                address:  location.formatted_address,
+                icon:  location.icon,
+                priceLevel: location.price_level,
+                rating:  location.rating,
+                placeId:  location.place_id,
+                openNow:  location.opening_hours.open_now,
+                latLng:  `${location.geometry.location.lat()},${location.geometry.location.lng()}`  
+            };
+            return newObj;
+        });
+
+        console.log(locationsArr);
+
       for (var i = 0; i < results.length; i++) {
         var place = results[i];
         console.log(results[i]);
@@ -95,20 +112,20 @@ function callback(results, status) {
     }
   }
 
-function getPlacesData(category){
-    //let queryUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${category}&locationbias=6000@${latLng.lat},${latLng.lng}&inputtype=textquery&fields=name&key=${googleMapsApiKey}`;
-    let queryUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsApiKey}&location=${latLng.lat},${latLng.lng}&radius=1500&type=${category}`;
-    console.log(queryUrl);
-    $.ajax(
-        {
-            url: queryUrl,
-            method: "GET",
-            dataType: "json"
-        }
-    ).then(function(response){
-        console.log(response);
-    });
-}
+// function getPlacesData(category){
+//     //let queryUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${category}&locationbias=6000@${latLng.lat},${latLng.lng}&inputtype=textquery&fields=name&key=${googleMapsApiKey}`;
+//     let queryUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsApiKey}&location=${latLng.lat},${latLng.lng}&radius=1500&type=${category}`;
+//     console.log(queryUrl);
+//     $.ajax(
+//         {
+//             url: queryUrl,
+//             method: "GET",
+//             dataType: "json"
+//         }
+//     ).then(function(response){
+//         console.log(response);
+//     });
+// }
 
 
 
@@ -163,7 +180,9 @@ $(document).ready(function () {
         let category = $("#category").val();
         console.log(rating,pricing,location,category,latLng)
         //getPlacesData(category);
-        aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  //testing with lat/long for Phoenix
+
+        //Get current weather via AJAX call and then update in HTML
+        aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData); 
 
     
         location = new google.maps.LatLng(latLng.lat,latLng.lng );
