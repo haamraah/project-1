@@ -30,6 +30,17 @@ const aerisWeather = {
     }
 };
 
+const aerisResults = {
+    temp: "",
+    humidity: "",
+    place: "",
+    icon: "",
+    weatherConditions: "",
+    heatIndex: "",
+    dateTime: ""
+
+}
+
 
 function logOutToConsole(obj) {
     console.log(obj);
@@ -38,7 +49,7 @@ function logOutToConsole(obj) {
 // $(document).on("click","#submitLocation",function(event){
 //   event.preventDefault()
 
-//  map.setCenter(latLng)
+//map.setCenter(latLng)
 // });
 
 // })
@@ -98,6 +109,36 @@ function getPlacesData(category){
 
 
 
+function setWeatherData(weatherObject) {
+    aerisResults.temp = weatherObject.response.ob.tempF;
+    aerisResults.humidity = weatherObject.response.ob.humidity;
+    aerisResults.place = weatherObject.response.place.name;
+    aerisResults.icon = weatherObject.response.ob.icon;
+    aerisResults.dateTime = weatherObject.response.ob.dateTimeISO;
+    aerisResults.heatIndex = weatherObject.response.ob.heatindexF;
+    aerisResults.weatherConditions = weatherObject.response.ob.weather;
+  
+    console.log(weatherObject);
+    console.log(aerisResults.temp);
+    console.log(aerisResults.humidity);
+    console.log(aerisResults.place);
+    console.log(aerisResults.icon);
+    console.log(aerisResults.dateTime);
+    console.log(aerisResults.heatIndex);
+    console.log(aerisResults.weatherConditions);
+
+    $("#current-temp").text(aerisResults.temp);
+    $("#humidity").text(aerisResults.humidity);
+    $("#location-weather").text(aerisResults.place);
+    $("#heat-index").text(aerisResults.heatIndex);
+    $("#weather-conditions").text(aerisResults.weatherConditions);
+    $("#date-time").text(aerisResults.dateTime);
+
+  
+    
+}
+
+
 $(document).ready(function () {
 
     //instantiate places and attach it to an input text box in the html
@@ -121,6 +162,8 @@ $(document).ready(function () {
         let category = $("#category").val();
         console.log(rating,pricing,location,category,latLng)
         //getPlacesData(category);
+        aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  //testing with lat/long for Phoenix
+
     
         location = new google.maps.LatLng(latLng.lat,latLng.lng );
 
