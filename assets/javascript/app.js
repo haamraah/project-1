@@ -1,26 +1,4 @@
 
-const toogleActive = function (button) {
-    var state = button.attr("data-state");
-    if (state == "inactive") {
-        button.attr("data-state", "active");
-        button.addClass("active");
-    }
-    else if (state == "active") {
-        button.attr("data-state", "inactive");
-        button.removeClass("active");
-    }
-};
-$(".star").on("click", function (event) {
-    toogleActive($(this));
-})
-$(".time").on("click", function (event) {
-    toogleActive($(this));
-})
-$(".price").on("click", function (event) {
-    toogleActive($(this));
-})
-
-
 
 
 const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
