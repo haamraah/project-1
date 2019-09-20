@@ -190,6 +190,7 @@ $(document).ready(function () {
         //Get current weather via AJAX call and then update in HTML
         aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData); 
 
+        map.setCenter(latLng);
     
         location = new google.maps.LatLng(latLng.lat,latLng.lng );
 
