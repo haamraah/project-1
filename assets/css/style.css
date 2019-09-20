@@ -14,6 +14,8 @@ font-family: Georgia, Times, 'Times New Roman', serif;
 body{
 
   background: url(../css/images/tucson.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   
 }
 
@@ -30,3 +32,18 @@ select{
   width: 100%;
 }
 
+.card-body{
+
+  background-color: rgb(84, 207, 255);
+  color: white;
+}
+
+.weather-display{
+  margin: 2px 0 5px 0;
+    font-size: 2em;
+    color: white;
+}
+
+#map{
+  min-height: 600px;
+}
