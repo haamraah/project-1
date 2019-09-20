@@ -30,14 +30,13 @@ function logOutToConsole(obj) {
 // $(document).on("click","#submitLocation",function(event){
 //   event.preventDefault()
 
-//  map.setCenter(latLng)
 // });
 
 // })
 function initMap() {
 
      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
+        zoom: 12,
         center: {
           lat: 33.4486,
           lng: -112.077
@@ -70,12 +69,8 @@ $(document).on("click","#get",function(){
     let pricing=$("#priceElement").val();
     let location = $("#location").val();
     let category = $("#category").val();
-<<<<<<< HEAD
-    
-    console.log(rating,pricing,location,category)
-})
-=======
     console.log(rating,pricing,location,category,latLng)
+    map.setCenter(latLng)
+
  })
 
->>>>>>> 98edaff0093acd876bfe6f6dea890e7ad8d30fdd
