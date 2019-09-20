@@ -46,25 +46,6 @@ function logOutToConsole(obj) {
     console.log(obj);
 }
 
-// $(document).on("click","#submitLocation",function(event){
-//   event.preventDefault()
-
-//map.setCenter(latLng)
-// });
-
-// })
-// function initMap() {
-
-//      map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 16,
-//         center: {
-//           lat: 33.4486,
-//           lng: -112.077
-//         },
-//         mapTypeId: "roadmap"
-//     });
-// }
-
 
 function initMap() {
 
@@ -75,11 +56,33 @@ function initMap() {
          lng: -112.077
        },
        mapTypeId: "roadmap"
-   });
+    });
 
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
 
+          //Update the global var that holds lat/lng to have the current location
+          latLng.lat = position.coords.latitude;
+          latLng.lng = position.coords.longitude;
+          aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  
 
+          map.setCenter(pos);
+          console.log("Successfully setup gelocation for map");
+        }, function() {
+            console.log("Unable to setup geolocation for map.  Falling back to default location.");
+        });
+    } 
+    else {
+        // Browser doesn't support Geolocation
+        console.log("Browser doesn't support geolocation for map.  Falling back to default location.");
+    }
 }
+
 
 function callback(results, status) {
     console.log("Ran callback function");
@@ -133,9 +136,6 @@ function setWeatherData(weatherObject) {
     $("#heat-index").text(aerisResults.heatIndex);
     $("#weather-conditions").text(aerisResults.weatherConditions);
     $("#date-time").text(aerisResults.dateTime);
-
-  
-    
 }
 
 
@@ -154,7 +154,8 @@ $(document).ready(function () {
 
     
 
-    aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
+    //aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
+
     $(document).on("click","#get",function(){
         let rating = $("#ratingElement").val();
         let pricing=$("#priceElement").val();

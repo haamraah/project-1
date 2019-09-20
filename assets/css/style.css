@@ -30,3 +30,15 @@ select{
   width: 100%;
 }
 
+.card-body{
+
+  background-color: rgb(84, 207, 255);
+  color: white;
+}
+
+.weather-display{
+  margin: 2px 0 5px 0;
+    font-size: 2em;
+    color: white;
+}
+
