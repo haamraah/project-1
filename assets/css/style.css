@@ -42,3 +42,6 @@ select{
     color: white;
 }
 
+#map{
+  height: 600px;
+}
