@@ -2,6 +2,7 @@ const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
 const googleMapsApiKey = "AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8";
 let locationCenter;
+let locationsArr = new Array;
 var map;
 var service;
 var request;
@@ -30,29 +31,22 @@ const aerisWeather = {
     }
 };
 
+const aerisResults = {
+    temp: "",
+    humidity: "",
+    place: "",
+    icon: "",
+    weatherConditions: "",
+    heatIndex: "",
+    dateTime: "",
+    sunrise: "",
+    sunset: ""
+}
+
 
 function logOutToConsole(obj) {
     console.log(obj);
 }
-
-// $(document).on("click","#submitLocation",function(event){
-//   event.preventDefault()
-
-//  map.setCenter(latLng)
-// });
-
-// })
-// function initMap() {
-
-//      map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 16,
-//         center: {
-//           lat: 33.4486,
-//           lng: -112.077
-//         },
-//         mapTypeId: "roadmap"
-//     });
-// }
 
 
 function initMap() {
@@ -64,16 +58,54 @@ function initMap() {
          lng: -112.077
        },
        mapTypeId: "roadmap"
-   });
+    });
 
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
 
+          //Update the global var that holds lat/lng to have the current location
+          latLng.lat = position.coords.latitude;
+          latLng.lng = position.coords.longitude;
+          aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  
 
+          map.setCenter(pos);
+          console.log("Successfully setup gelocation for map");
+        }, function() {
+            console.log("Unable to setup geolocation for map.  Falling back to default location.");
+        });
+    } 
+    else {
+        // Browser doesn't support Geolocation
+        console.log("Browser doesn't support geolocation for map.  Falling back to default location.");
+    }
 }
+
 
 function callback(results, status) {
     console.log("Ran callback function");
     console.log(google.maps.places.PlacesServiceStatus);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+        locationsArr = results.map(function(location){
+            let newObj = {
+                name: location.name,
+                address:  location.formatted_address,
+                icon:  location.icon,
+                priceLevel: location.price_level,
+                rating:  location.rating,
+                placeId:  location.place_id,
+                openNow:  location.opening_hours.open_now,
+                latLng:  `${location.geometry.location.lat()},${location.geometry.location.lng()}`  
+            };
+            return newObj;
+        });
+
+        console.log(locationsArr);
+
       for (var i = 0; i < results.length; i++) {
         var place = results[i];
         console.log(results[i]);
@@ -81,21 +113,53 @@ function callback(results, status) {
     }
   }
 
-function getPlacesData(category){
-    //let queryUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${category}&locationbias=6000@${latLng.lat},${latLng.lng}&inputtype=textquery&fields=name&key=${googleMapsApiKey}`;
-    let queryUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsApiKey}&location=${latLng.lat},${latLng.lng}&radius=1500&type=${category}`;
-    console.log(queryUrl);
-    $.ajax(
-        {
-            url: queryUrl,
-            method: "GET",
-            dataType: "json"
-        }
-    ).then(function(response){
-        console.log(response);
-    });
-}
+// function getPlacesData(category){
+//     //let queryUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${category}&locationbias=6000@${latLng.lat},${latLng.lng}&inputtype=textquery&fields=name&key=${googleMapsApiKey}`;
+//     let queryUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsApiKey}&location=${latLng.lat},${latLng.lng}&radius=1500&type=${category}`;
+//     console.log(queryUrl);
+//     $.ajax(
+//         {
+//             url: queryUrl,
+//             method: "GET",
+//             dataType: "json"
+//         }
+//     ).then(function(response){
+//         console.log(response);
+//     });
+// }
 
+
+
+function setWeatherData(weatherObject) {
+    aerisResults.temp = weatherObject.response.ob.tempF;
+    aerisResults.humidity = weatherObject.response.ob.humidity;
+    aerisResults.place = weatherObject.response.place.name;
+    aerisResults.icon = weatherObject.response.ob.icon;
+    aerisResults.dateTime = moment(weatherObject.response.ob.dateTimeISO).format('h:mm:ss a');
+    aerisResults.heatIndex = weatherObject.response.ob.heatindexF;
+    aerisResults.weatherConditions = weatherObject.response.ob.weather;
+    aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm:ss a');
+    aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm:ss a');
+
+  
+    console.log(weatherObject);
+    console.log(aerisResults.temp);
+    console.log(aerisResults.humidity);
+    console.log(aerisResults.place);
+    console.log(aerisResults.icon);
+    console.log(aerisResults.dateTime);
+    console.log(aerisResults.heatIndex);
+    console.log(aerisResults.weatherConditions);
+
+    $("#current-temp").text(aerisResults.temp);
+    $("#humidity").text(aerisResults.humidity);
+    $("#location-weather").text(aerisResults.place);
+    $("#heat-index").text(aerisResults.heatIndex);
+    $("#weather-conditions").text(aerisResults.weatherConditions);
+    $("#date-time").text(aerisResults.dateTime);
+    $("#sunrise").text(aerisResults.sunrise);
+    $("#sunset").text(aerisResults.sunset);
+}
 
 
 $(document).ready(function () {
@@ -113,7 +177,8 @@ $(document).ready(function () {
 
     
 
-    aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
+    //aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
+
     $(document).on("click","#get",function(){
         let rating = $("#ratingElement").val();
         let pricing=$("#priceElement").val();
@@ -121,6 +186,11 @@ $(document).ready(function () {
         let category = $("#category").val();
         console.log(rating,pricing,location,category,latLng)
         //getPlacesData(category);
+
+        //Get current weather via AJAX call and then update in HTML
+        aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData); 
+
+        map.setCenter(latLng);
     
         location = new google.maps.LatLng(latLng.lat,latLng.lng );
 
