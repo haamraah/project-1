@@ -25,8 +25,17 @@ $(".price").on("click", function (event) {
 
 const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
+const googleMapsApiKey = "AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8";
 let locationCenter;
 var map;
+var placesAutocomplete;
+
+let latLng = {
+    lat:33.4487,
+    lng:-112.071
+};  //latitude and longitude in an object returned from the suggestion from Algolia places
+
+
 const aerisWeather = {
     apiKey: "XfKCLeB7QSZnVmsSSrlqL5abBWmH1kLv4GiHMpWB",
     accessId: "IhoPBape6zamvrXhAop7j",
@@ -44,10 +53,6 @@ const aerisWeather = {
     }
 };
 
-let latLng = {
-    lat: 33.4487,
-    lng: -112.071
-};  //latitude and longitude in an object returned from the suggestion from Algolia places
 
 const aerisResults = {
     temp: "",
@@ -77,16 +82,11 @@ function logOutToConsole(obj) {
     console.log(obj);
 }
 
+// $(document).on("click","#submitLocation",function(event){
+//   event.preventDefault()
 
-$(document).on("click", "#submitLocation", function (event) {
-    event.preventDefault()
-    
-    map.setCenter(latLng)
-    let stringVal = latLng.lat + "," + latLng.lng;
-    console.log(stringVal);
-    aerisWeather.getCurrentWeather(stringVal, setWeatherData);
-
-});
+//  map.setCenter(latLng)
+// });
 
 // })
 function initMap() {
@@ -97,15 +97,31 @@ function initMap() {
             lat: 33.4486,
             lng: -112.077
         },
-        mapTypeId: "satellite"
+        mapTypeId: "roadmap"
     });
 }
+
+
+function getPlacesData(category){
+    //let queryUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${category}&locationbias=6000@${latLng.lat},${latLng.lng}&inputtype=textquery&fields=name&key=${googleMapsApiKey}`;
+    let queryUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsApiKey}&location=${latLng.lat},${latLng.lng}&radius=1500&type=${category}`;
+    console.log(queryUrl);
+    $.ajax(
+        {
+            url: queryUrl,
+            method: "GET"
+        }
+    ).then(function(response){
+        console.log(response);
+    });
+}
+
 
 
 $(document).ready(function () {
 
     //instantiate places and attach it to an input text box in the html
-    var placesAutocomplete = places({
+        placesAutocomplete = places({
         appId: algoliaAppId,
         apiKey: algoliaApiKey,
         container: document.querySelector('#location')
@@ -119,4 +135,13 @@ $(document).ready(function () {
 
     aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
 });
+
+$(document).on("click","#get",function(){
+    let rating = $("#ratingElement").val();
+    let pricing=$("#priceElement").val();
+    let location = $("#location").val();
+    let category = $("#category").val();
+    console.log(rating,pricing,location,category,latLng)
+    getPlacesData(category);
+ })
 

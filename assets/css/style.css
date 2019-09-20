@@ -5,9 +5,7 @@
     cursor: pointer;
 }
 form{
-  position:absolute;  
-left: 38%;
-top:30%;
+margin: auto;
 width:30%;
 
 }
@@ -32,5 +30,9 @@ button{
 select{
   position: relative;
   margin-top:  10px;
+}
+
+.navbar {
+  width: 100%;
 }
 
