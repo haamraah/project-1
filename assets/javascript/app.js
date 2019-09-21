@@ -47,13 +47,6 @@ const aerisResults = {
     sunset: ""
 }
 
-
-let aerisResults = {
- temp: "",
- humidity: "",
- place: "",
- icon: ""
-}
 function setWeatherData(weatherObject) {
     aerisResults.temp = weatherObject.response.ob.tempF;
     aerisResults.humidity = weatherObject.response.ob.humidity;
