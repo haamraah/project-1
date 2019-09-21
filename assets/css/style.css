@@ -17,8 +17,7 @@ body{
   background-size: cover;
   
 }
-
-#title{
+h1{
   position: relative;
   left: 20%;
   color: rgb(4, 138, 64);
@@ -78,3 +77,4 @@ span{
 #result-img{
   height: 100%;
 }
+
