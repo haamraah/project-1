@@ -72,6 +72,7 @@ function initMap() {
           latLng.lat = position.coords.latitude;
           latLng.lng = position.coords.longitude;
           aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  
+          console.log(latLng);
 
           map.setCenter(pos);
           console.log("Successfully setup gelocation for map");
@@ -87,8 +88,6 @@ function initMap() {
 
 
 function callback(results, status) {
-    console.log("Ran callback function");
-    console.log(google.maps.places.PlacesServiceStatus);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         locationsArr = results.map(function(location){
             let newObj = {
@@ -98,7 +97,7 @@ function callback(results, status) {
                 priceLevel: location.price_level,
                 rating:  location.rating,
                 placeId:  location.place_id,
-                openNow:  location.opening_hours.open_now,
+                openNow:  Object.keys(location).includes("opening_hours") ? location.opening_hours.open_now : null,
                 latLng:  `${location.geometry.location.lat()},${location.geometry.location.lng()}`  
             };
             return newObj;
@@ -106,11 +105,37 @@ function callback(results, status) {
 
         console.log(locationsArr);
 
-      for (var i = 0; i < results.length; i++) {
-        var place = results[i];
-        console.log(results[i]);
-      }
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+            console.log(results[i]);
+        }
+
+        renderResults(locationsArr);
     }
+}
+
+  function renderResults(results){
+      resultsDiv = $("#results");
+      resultsDiv.empty();
+
+      //Build a card for each places result and append to the div
+      results.forEach( result => {
+        let cardDiv = $("<div>");
+        let cardBody = $("<div>");
+
+        cardDiv.addClass("card text-white bg-dark m-2");
+        cardBody.addClass("card-body");
+
+        cardBody.append($(`<h5 class="card-title">${result.name}</h5>`));
+        cardBody.append($(`<p class="card-text">${result.address}</p>`));
+
+        let priceLevelText = result.priceLevel === undefined ? "Not Specified" : result.priceLevel;
+        cardBody.append($(`<p class="card-text">Price Range: ${priceLevelText}</p>`));
+        cardBody.append($(`<p class="card-text">Rating: ${result.rating}</p>`));
+
+        cardDiv.append(cardBody);
+        resultsDiv.append(cardDiv);
+      });
   }
 
 // function getPlacesData(category){
@@ -197,7 +222,7 @@ $(document).ready(function () {
         request = {
             location: location,
             radius: '500',
-            query: 'restaurant'
+            query: category
           };
         
 
