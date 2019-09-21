@@ -229,7 +229,12 @@ $(document).ready(function () {
           service = new google.maps.places.PlacesService(map);
           service.textSearch(request, callback);
         
-     })
+     });
+
+    //  $(document).on("click",".dropdown-item",function(){
+    //     console.log(this.value);
+    //     $("#dropdownMenuButton").text(this.value);
+    //  });
     
     
 });

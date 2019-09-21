@@ -60,3 +60,7 @@ button{
 .ap-dropdown-menu{
   text-align: left;
 }
+
+.dropdown{
+  width: 100%;
+}
