@@ -8,7 +8,7 @@ form{
 margin: auto;
 width:30%;
 
-}
+} */
 
 h1{
 position: relative;
@@ -38,11 +38,10 @@ select{
   width: 100%;
 } 
 
-.card-body{
-
+/* .card-body{
   background-color: rgb(84, 207, 255);
   color: white;
-}
+} */
 
 
 
