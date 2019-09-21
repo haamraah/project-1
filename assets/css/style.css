@@ -1,8 +1,8 @@
-form{
+/* form{
 margin: auto;
 width:30%;
 
-}
+} */
 
 h1{
 position: relative;
@@ -23,31 +23,40 @@ button{
  background-color: red;
 }
 
-select{
+/* select{
   position: relative;
   margin-top:  10px;
-}
+} */
 
 .navbar {
   width: 100%;
 }
 
-.card-body{
+/* .card-body{
   background-color: rgb(84, 207, 255);
   color: white;
-}
+} */
 
-.weather-display{
+/* .weather-display{
   margin: 2px 0 5px 0;
     font-size: 2em;
     color: white;
-}
+
+} */
 
 #map{
   min-height: 600px;
 }
 
-#map, #weather-div, #results{
+#map, #weather-div, #results, .inputs{
   width: 90%;
   margin: 0 auto;
+}
+
+#weather-div{
+  margin-bottom: 30px;
+}
+
+.ap-dropdown-menu{
+  text-align: left;
 }

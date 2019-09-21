@@ -160,11 +160,11 @@ function setWeatherData(weatherObject) {
     aerisResults.humidity = weatherObject.response.ob.humidity;
     aerisResults.place = weatherObject.response.place.name;
     aerisResults.icon = weatherObject.response.ob.icon;
-    aerisResults.dateTime = moment(weatherObject.response.ob.dateTimeISO).format('h:mm:ss a');
+    aerisResults.dateTime = moment(weatherObject.response.ob.dateTimeISO).format('h:mm a');
     aerisResults.heatIndex = weatherObject.response.ob.heatindexF;
     aerisResults.weatherConditions = weatherObject.response.ob.weather;
-    aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm:ss a');
-    aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm:ss a');
+    aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm a');
+    aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm a');
 
   
     console.log(weatherObject);
