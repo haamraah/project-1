@@ -18,148 +18,130 @@
 <body>
 
     <div class="container-fluid">
-
+        <!-- Page Header -->
         <div class="row">
-            <!-- <div class="col" id="header"> -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a href="#" class="navbar-left">
-                    <img src="../project-1/assets/css/images/trava-vada.png">
-                </a>
-                <h1>Search, pick and enjoy...</h1>
-            </nav>
-            <!-- </div> -->
+            <div class="col m-0 p-0" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a href="#" class="navbar-left">
+                        <img src="../project-1/assets/css/images/trava-vada.png">
+                    </a>
+                    <h1>Search, pick and enjoy...</h1>
+                </nav>
+            </div>
         </div>
 
+        <!-- Input Search Options -->
         <div class="row">
             <div class="col" id="filters">
                 <form class="form my-2 my-lg-0 ">
-
-
-
-
                     <div class="container" id="filters">
-                        <form>
-                            <div class="form-group">
-                                <label for="ratingElement">Rating</label>
-                                <input type="range" max="5" min="0" class="form-control-range" id="ratingElement">
-                                <label for="priceElement">price</label>
-                                <input type="range" max="5" min="0" class="form-control-range" id="priceElement">
-                                <label for="location">location</label>
-                                <input type="text" class="form-control" id="location">
-                                <label for="category">Type</label>
-                                <select id="category">
-                                    <option value="0">Select category</option>
-                                    <option value="airport">airport</option>
-                                    <option value="amusement_park">amusement park</option>
-                                    <option value="aquarium">aquarium</option>
-                                    <option value="art_gallery">art gallery</option>
-                                    <option value="atm">atm</option>
-                                    <option value="bank">bank</option>
-                                    <option value="bar">bar</option>
-                                    <option value="beauty_salon">beauty salon</option>
-                                    <option value="book_store">book store</option>
-                                    <option value="bowling_alley">bowling alley</option>
-                                    <option value="bus_station">bus station</option>
-                                    <option value="cafe">cafe</option>
-                                    <option value="campground">campground</option>
-                                    <option value="casino">casino</option>
-                                    <option value="clothing_store">clothing store</option>
-                                    <option value="convenience_store">convenience store</option>
-                                    <option value="doctor">doctor</option>
-                                    <option value="florist">florist</option>
-                                    <option value="gas_station">gas station</option>
-                                    <option value="gym">gym</option>
-                                    <option value="hospital">hospital</option>
-                                    <option value="laundry">laundry</option>
-                                    <option value="library">library</option>
-                                    <option value="liquor_store">liquor store</option>
-                                    <option value="locksmith">locksmith</option>
-                                    <option value="movie_theater">movie theater</option>
-                                    <option value="museum">museum</option>
-                                    <option value="night_club">night club</option>
-                                    <option value="park">park</option>
-                                    <option value="parking">parking</option>
-                                    <option value="pet_store">pet store</option>
-                                    <option value="pharmacy">pharmacy</option>
-                                    <option value="police">police</option>
-                                    <option value="post_office">post office</option>
-                                    <option value="restaurant">restaurant</option>
-                                    <option value="school">school</option>
-                                    <option value="shopping_mall">shopping mall</option>
-                                    <option value="spa">spa</option>
-                                    <option value="stadium">stadium</option>
-                                    <option value="store">store</option>
-                                    <option value="subway_station">subway station</option>
-                                    <option value="supermarket">supermarket</option>
-                                    <option value="taxi_stand">taxi stand</option>
-                                    <option value="train_station">train station</option>
-                                    <option value="zoo">zoo</option>
-                                </select>
-                                <button id="get" type="button" class="btn btn-primary">get</button>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="ratingElement">Rating</label>
+                            <input type="range" max="5" min="0" class="form-control-range" id="ratingElement">
+                            <label for="priceElement">price</label>
+                            <input type="range" max="5" min="0" class="form-control-range" id="priceElement">
+                            <label for="location">location</label>
+                            <input type="text" class="form-control" id="location">
+                            <label for="category">Type</label>
+                            <select id="category">
+                                <option value="0">Select category</option>
+                                <option value="airport">airport</option>
+                                <option value="amusement_park">amusement park</option>
+                                <option value="aquarium">aquarium</option>
+                                <option value="art_gallery">art gallery</option>
+                                <option value="atm">atm</option>
+                                <option value="bank">bank</option>
+                                <option value="bar">bar</option>
+                                <option value="beauty_salon">beauty salon</option>
+                                <option value="book_store">book store</option>
+                                <option value="bowling_alley">bowling alley</option>
+                                <option value="bus_station">bus station</option>
+                                <option value="cafe">cafe</option>
+                                <option value="campground">campground</option>
+                                <option value="casino">casino</option>
+                                <option value="clothing_store">clothing store</option>
+                                <option value="convenience_store">convenience store</option>
+                                <option value="doctor">doctor</option>
+                                <option value="florist">florist</option>
+                                <option value="gas_station">gas station</option>
+                                <option value="gym">gym</option>
+                                <option value="hospital">hospital</option>
+                                <option value="laundry">laundry</option>
+                                <option value="library">library</option>
+                                <option value="liquor_store">liquor store</option>
+                                <option value="locksmith">locksmith</option>
+                                <option value="movie_theater">movie theater</option>
+                                <option value="museum">museum</option>
+                                <option value="night_club">night club</option>
+                                <option value="park">park</option>
+                                <option value="parking">parking</option>
+                                <option value="pet_store">pet store</option>
+                                <option value="pharmacy">pharmacy</option>
+                                <option value="police">police</option>
+                                <option value="post_office">post office</option>
+                                <option value="restaurant">restaurant</option>
+                                <option value="school">school</option>
+                                <option value="shopping_mall">shopping mall</option>
+                                <option value="spa">spa</option>
+                                <option value="stadium">stadium</option>
+                                <option value="store">store</option>
+                                <option value="subway_station">subway station</option>
+                                <option value="supermarket">supermarket</option>
+                                <option value="taxi_stand">taxi stand</option>
+                                <option value="train_station">train station</option>
+                                <option value="zoo">zoo</option>
+                            </select>
+                            <button id="get" type="button" class="btn btn-primary">get</button>
+                        </div>
                     </div>
-                    Collapse
-
-
-
-
-
-
+                </form>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col">
-                <div id="map">
-                </div>
-
-            </div>
-        </div>
-        <div class="row" id="weather-div">
-            <div class="col">
-                <div class="card">
-                    
-                    <div class="card-body" id="card-body1">
-                        <table>
-                            <tr>
-                                <td><span class="weather-display">Current Temp:</span> <span id="current-temp">75</span></td>
-                                <td><span class="weather-display">Humidity:</span> <span id="humidity">50</span></td>
-                                <td><span class="weather-display">Location:</span> <span id="location-weather">Tucson</span></td>
-                                <td><span class="weather-display">Heat Index:</span> <span id="heat-index">80</span></td>
-                                <td><span class="weather-display">Weather Conditions:</span> <span id="weather-conditions">Sunny</span></td>
-                                <td><span class="weather-display">Date Time:</span> <span id="date-time">7:30pm</span></td>
-                                <td><span class="weather-display">Sunrise:</span> <span id="sunrise">7:30pm</span></td>
-                                <td><span class="weather-display">Sunset:</span> <span id="sunset">7:30pm</span></td>
-                            </tr>
-                        </table>                    
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col">
-                <div id="results">
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
+    <!-- Google Map to display search results -->
+    <div class="row">
+        <div class="col">
+            <div id="map">
+            </div>
+        </div>
+    </div>
 
+    <!-- Display current weather based on search location -->
+    <div class="row m-auto" id="weather-div">
+        <div class="card">
+            <div class="card-body" id="card-body1">
+                <table>
+                    <tr>
+                        <td><span class="weather-display">Current Temp:</span> <span id="current-temp"></span></td>
+                        <td><span class="weather-display">Humidity:</span> <span id="humidity"></span></td>
+                        <td><span class="weather-display">Location:</span> <span id="location-weather"></span>
+                        </td>
+                        <td><span class="weather-display">Heat Index:</span><span id="heat-index">80</span>
+                        </td>
+                        <td><span class="weather-display">Weather Conditions:</span><span
+                                id="weather-conditions">Sunny</span></td>
+                        <td><span class="weather-display">Date Time:</span> <span id="date-time"></span>
+                        </td>
+                        <td><span class="weather-display">Sunrise:</span> <span id="sunrise"></span>
+                        </td>
+                        <td><span class="weather-display">Sunset:</span> <span id="sunset"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
+    <!-- Display details of all places returned in search results -->
+    <div class="row">
+        <div class="col">
+            <div id="results">
+            </div>
+        </div>
+    </div>
 
-
-
-
-
-
-
-
-
+    </div>
 
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <!-- JQuery -->
@@ -179,11 +161,6 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8&libraries=places&callback=initMap">
         </script>
-
-
 </body>
-
-
-
 
 </html>
