@@ -1,3 +1,6 @@
+
+
+
 const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
 const googleMapsApiKey = "AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8";
@@ -76,7 +79,7 @@ function setWeatherData(weatherObject) {
     weatherTime = $("<h5>").addClass("card-text").text(`Time : ${aerisResults.time}`);
     weatherSunrise = $("<h5>").addClass("card-text").text(`Sunrise : ${aerisResults.sunrise}`);
     weatherSunset = $("<h5>").addClass("card-text").text(`Sunset : ${aerisResults.sunset}`);
-
+    
     colDiv.append(newImg);
     rowDiv.append(colDiv);
     newCardBody.append(weatherPlace, weatherTime, weatherSunrise, weatherSunset, weatherTemp, weatherHumidity);
@@ -237,7 +240,6 @@ function setWeatherData(weatherObject) {
     aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm a');
     aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm a');
 
-
     console.log(weatherObject);
     console.log(aerisResults.temp);
     console.log(aerisResults.humidity);
@@ -269,13 +271,10 @@ $(document).ready(function () {
 
 
     //When user selects a suggested address, save off the latitude and longitude
-    placesAutocomplete.on('change', e => {
-        latLng = e.suggestion.latlng;
-    });
+    placesAutocomplete.on('change', e => { latLng = e.suggestion.latlng; });
 
 
     //aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
-
 
 
     //  $(document).on("click",".dropdown-item",function(){
